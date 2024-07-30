@@ -13,7 +13,7 @@ export const Heroes = () => {
           />
         </div>
 
-        <div className='relative h-[350px] w-[350px]'>
+        <div className='relative md:h-[350px] w-[350px]'>
           <Image
             src='/hero3.png'
             fill
