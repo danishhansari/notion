@@ -27,9 +27,8 @@ export const Navbar = () => {
             <Spinner />
           </div>
         )}
-
         {!isAuthenticated && !isLoading && (
-          <div>
+          <div className='w-full flex items-center justify-end'>
             <SignInButton mode='modal'>
               <Button variant={"ghost"} size={"sm"}>
                 Log in
