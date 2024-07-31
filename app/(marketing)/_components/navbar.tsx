@@ -25,7 +25,7 @@ export const Navbar = () => {
         {isLoading && <Spinner />}
 
         {!isAuthenticated && !isLoading && (
-          <>
+          <div>
             <SignInButton mode='modal'>
               <Button variant={"ghost"} size={"sm"}>
                 Log in
@@ -34,16 +34,16 @@ export const Navbar = () => {
             <SignInButton mode='modal'>
               <Button size={"sm"}>Get Notion Free</Button>
             </SignInButton>
-          </>
+          </div>
         )}
 
         {isAuthenticated && !isLoading && (
-          <>
+          <div className="flex items-center justify-end w-full">
             <Button variant={"ghost"} size={"sm"}>
               <Link href={"/documents"}>Enter Notion</Link>
             </Button>
             <UserButton />
-          </>
+          </div>
         )}
         <ModeToggle />
       </div>
