@@ -16,13 +16,17 @@ export const Navbar = () => {
   return (
     <div
       className={cn(
-        "z-50 bg-background dark:bg-[#1f1f1f] fixed top-0 flex items-center w-full p-6",
+        "z-50 bg-background dark:bg-[#1f1f1f] fixed top-0 flex items-center w-full p-4 md:p-6",
         scrolled && "border-b shadow-sm"
       )}
     >
       <Logo />
       <div className='md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2'>
-        {isLoading && <Spinner />}
+        {isLoading && (
+          <div className='w-full flex items-center justify-end'>
+            <Spinner />
+          </div>
+        )}
 
         {!isAuthenticated && !isLoading && (
           <div>
@@ -38,7 +42,7 @@ export const Navbar = () => {
         )}
 
         {isAuthenticated && !isLoading && (
-          <div className="flex items-center justify-end w-full">
+          <div className='flex items-center justify-end w-full'>
             <Button variant={"ghost"} size={"sm"}>
               <Link href={"/documents"}>Enter Notion</Link>
             </Button>
