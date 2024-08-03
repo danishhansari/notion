@@ -138,8 +138,8 @@ const Navigation = () => {
         </div>
         <div className='flex flex-col'>
           <UserItem />
-          {/* <Item label='Search' icon={Search} isSearch onClick={() => {}} /> */}
-          {/* <Item label='Setting' icon={Settings} onClick={() => {}} /> */}
+          <Item label='Search' icon={Search} isSearch onClick={() => {}} />
+          <Item label='Setting' icon={Settings} onClick={() => {}} />
           <Item onClick={handleCreate} label='New page' icon={PlusCircle} />
         </div>
         <div className='mt-4'>
