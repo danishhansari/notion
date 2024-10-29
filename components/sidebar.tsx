@@ -1,9 +1,6 @@
 "use client";
 import {
   Sidebar as ShadCnSidebar,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
@@ -22,7 +19,7 @@ export const Sidebar = () => {
               {`'s`} Space
             </h1>
           </div>
-          <div className="p-3 md:p-5">
+          <div className='p-3 md:p-5'>
             <NewDocumentButton />
           </div>
         </ShadCnSidebar>
