@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { pgTable, text, serial, timestamp, integer } from "drizzle-orm/pg-core";
 
 export const documentSchema = pgTable("document", {
@@ -19,3 +20,22 @@ export const roomSchema = pgTable("rooms", {
     onDelete: "cascade",
   }),
 });
+
+export const documentRelations = relations(documentSchema, ({ many }) => ({
+  rooms: many(roomSchema),
+}));
+
+export const userRelations = relations(userSchema, ({ many }) => ({
+  rooms: many(roomSchema),
+}));
+
+export const roomRelations = relations(roomSchema, ({ one }) => ({
+  user: one(userSchema, {
+    fields: [roomSchema.userId],
+    references: [userSchema.email],
+  }),
+  document: one(documentSchema, {
+    fields: [roomSchema.roomId],
+    references: [documentSchema.id],
+  }),
+}));

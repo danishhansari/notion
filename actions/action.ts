@@ -47,6 +47,18 @@ export async function createNewDocument() {
 }
 
 export async function getAllDocument() {
-  const document = await db.query.documentSchema.findMany();
+  auth.protect();
+  const { sessionClaims } = await auth();
+  if (!sessionClaims || !sessionClaims.email) {
+    throw new Error("Error in session claims");
+  }
+  const document = await db.query.roomSchema.findMany({
+    where: eq(roomSchema.userId, sessionClaims?.email!),
+    with: {
+      document: true,
+      user: true,
+    },
+  });
+  console.log(document);
   return document;
 }
