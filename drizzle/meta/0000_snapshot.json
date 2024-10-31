@@ -1,5 +1,5 @@
 {
-  "id": "7eb79a4b-b9cc-462c-8562-6986a585517c",
+  "id": "f0987470-e381-4428-901c-68e7c233640d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -35,7 +35,7 @@
           "name": "user_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "role": {
           "name": "role",
@@ -54,7 +54,7 @@
           "name": "room_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         }
       },
       "indexes": {},
@@ -69,7 +69,7 @@
           "columnsTo": [
             "email"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         },
         "rooms_room_id_document_id_fk": {
@@ -82,7 +82,7 @@
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },

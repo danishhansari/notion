@@ -10,12 +10,12 @@ export const userSchema = pgTable("users", {
 });
 
 export const roomSchema = pgTable("rooms", {
-  userId: text("user_id")
-    .notNull()
-    .references(() => userSchema.email),
+  userId: text("user_id").references(() => userSchema.email, {
+    onDelete: "cascade",
+  }),
   role: text("role").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
-  roomId: integer("room_id")
-    .notNull()
-    .references(() => documentSchema.id),
+  roomId: integer("room_id").references(() => documentSchema.id, {
+    onDelete: "cascade",
+  }),
 });

@@ -4,10 +4,10 @@ CREATE TABLE IF NOT EXISTS "document" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "rooms" (
-	"user_id" text NOT NULL,
+	"user_id" text,
 	"role" text NOT NULL,
 	"created_at" timestamp DEFAULT now(),
-	"room_id" integer NOT NULL
+	"room_id" integer
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
@@ -15,13 +15,13 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "rooms" ADD CONSTRAINT "rooms_user_id_users_email_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("email") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "rooms" ADD CONSTRAINT "rooms_user_id_users_email_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("email") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "rooms" ADD CONSTRAINT "rooms_room_id_document_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."document"("id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "rooms" ADD CONSTRAINT "rooms_room_id_document_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."document"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

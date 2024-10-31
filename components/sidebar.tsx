@@ -3,14 +3,31 @@ import {
   Sidebar as ShadCnSidebar,
   SidebarProvider,
   SidebarTrigger,
-  // useSidebar,
 } from "@/components/ui/sidebar";
 import { useUser } from "@clerk/nextjs";
 import { NewDocumentButton } from "./new-document-button";
+import { getAllDocument } from "@/actions/action";
+import { useEffect, useState } from "react";
+import { Document } from "@/types/types";
 
 export const Sidebar = () => {
   const { user } = useUser();
-  // const { state } = useSidebar();
+  const [data, setData] = useState<Document[] | null>(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const documents = await getAllDocument();
+        setData(documents);
+      } catch (error) {
+        console.error("Error fetching documents:", error);
+      }
+    };
+    getData();
+  }, []);
+
+  console.log(data);
+
   return (
     <>
       <SidebarProvider>
@@ -23,6 +40,14 @@ export const Sidebar = () => {
           </div>
           <div className='p-3 md:p-5'>
             <NewDocumentButton />
+
+            {data && (
+              <div className='mt-4'>
+                {data.map((doc) => {
+                  return <div key={doc.id}>{doc.title}</div>;
+                })}
+              </div>
+            )}
           </div>
         </ShadCnSidebar>
         <SidebarTrigger />
