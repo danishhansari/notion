@@ -7,21 +7,23 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import { Button, buttonVariants } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
   const { user } = useUser();
+  const router = useRouter();
   return (
     <div className='flex items-center justify-between p-2 md:p-4 bg-slate-50 border-b'>
       {user && (
-        <h1 className='text-xl'>
+        <button onClick={() => router.push("/")} className='text-xl'>
           {user?.firstName}
           {`'s`} Space
-        </h1>
+        </button>
       )}
 
       {/* Breadcrums */}
 
-      
       <div>
         <SignedOut>
           <SignInButton />

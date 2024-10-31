@@ -3,12 +3,14 @@ import {
   Sidebar as ShadCnSidebar,
   SidebarProvider,
   SidebarTrigger,
+  // useSidebar,
 } from "@/components/ui/sidebar";
 import { useUser } from "@clerk/nextjs";
 import { NewDocumentButton } from "./new-document-button";
 
 export const Sidebar = () => {
   const { user } = useUser();
+  // const { state } = useSidebar();
   return (
     <>
       <SidebarProvider>
